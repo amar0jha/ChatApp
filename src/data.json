@@ -1,0 +1,135 @@
+[
+    {
+        "id": 1,
+        "name": "Anna Taylor",
+        "phoneNumber": "111-222-3333",
+        "profileImg": "AT",
+        "color": "grey"
+    },
+    {
+        "id": 2,
+        "name": "Brian Clark",
+        "phoneNumber": "222-333-4444",
+        "profileImg": "BC",
+        "color": "green"
+    },
+    {
+        "id": 3,
+        "name": "Cathy Wilson",
+        "phoneNumber": "333-444-5555",
+        "profileImg": "CW",
+        "color": "red"
+    },
+    {
+        "id": 4,
+        "name": "Derek Moore",
+        "phoneNumber": "444-555-6666",
+        "profileImg": "DM",
+        "color": "purple"
+    },
+    {
+        "id": 5,
+        "name": "Amy Brown",
+        "phoneNumber": "555-666-7777",
+        "profileImg": "AB",
+        "color": "cyan"
+    },
+    {
+        "id": 6,
+        "name": "Chris Adams",
+        "phoneNumber": "666-777-8888",
+        "profileImg": "CA",
+        "color": "orange"
+    },
+    {
+        "id": 7,
+        "name": "Dan Smith",
+        "phoneNumber": "777-888-9999",
+        "profileImg": "DS",
+        "color": "pink"
+    },
+    {
+        "id": 8,
+        "name": "Alison Green",
+        "phoneNumber": "888-999-0000",
+        "profileImg": "AG",
+        "color": "cyan"
+    },
+    {
+        "id": 9,
+        "name": "Jack White",
+        "phoneNumber": "999-000-1111",
+        "profileImg": "JW",
+        "color": "magenta"
+    },
+    {
+        "id": 10,
+        "name": "Jake Black",
+        "phoneNumber": "000-111-2222",
+        "profileImg": "JB",
+        "color": "brown"
+    },
+    {
+        "id": 11,
+        "name": "James Stone",
+        "phoneNumber": "111-222-3333",
+        "profileImg": "JS",
+        "color": "gray"
+    },
+    {
+        "id": 12,
+        "name": "Laura Smith",
+        "phoneNumber": "123-456-7891",
+        "profileImg": "LS",
+        "color": "lightblue"
+    },
+    {
+        "id": 13,
+        "name": "Michael Johnson",
+        "phoneNumber": "234-567-8902",
+        "profileImg": "MJ",
+        "color": "darkgreen"
+    },
+    {
+        "id": 14,
+        "name": "Sophie Davis",
+        "phoneNumber": "345-678-9013",
+        "profileImg": "SD",
+        "color": "violet"
+    },
+    {
+        "id": 15,
+        "name": "Oliver Brown",
+        "phoneNumber": "456-789-0124",
+        "profileImg": "OB",
+        "color": "lightblue"
+    },
+    {
+        "id": 16,
+        "name": "Nina Williams",
+        "phoneNumber": "567-890-1235",
+        "profileImg": "NW",
+        "color": "salmon"
+    },
+    {
+        "id": 17,
+        "name": "Paul Robinson",
+        "phoneNumber": "678-901-2346",
+        "profileImg": "PR",
+        "color": "teal"
+    },
+    {
+        "id": 18,
+        "name": "Eva Green",
+        "phoneNumber": "789-012-3457",
+        "profileImg": "EG",
+        "color": "lime"
+    },
+    {
+        "id": 19,
+        "name": "Sam Turner",
+        "phoneNumber": "890-123-4568",
+        "profileImg": "ST",
+        "color": "coral"
+    }
+]
