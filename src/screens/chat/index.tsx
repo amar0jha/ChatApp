@@ -32,7 +32,7 @@ const ChatScreen = ({ route }: any) => {
 
 
   // console.log(route.params.id)
-  const { color, profileImg, name, id } = route?.params?.data;
+  const { color, avatar, name, id } = route?.params?.data;
   // console.log('sss',route.params.data);
 
   const chatId = route.params.data.id;
@@ -120,7 +120,70 @@ const ChatScreen = ({ route }: any) => {
 
     }
   };
-
+  const renderMessage = (props: any) => {
+    const { currentMessage } = props;
+    const isUserMessage = currentMessage.user._id === 1;
+    const messageTime = new Date(currentMessage.createdAt).toLocaleTimeString([],{
+        hour: "2-digit",
+        minute: "2-digit",
+      }
+    );
+    return (
+      <>
+        <TouchableOpacity
+          onLongPress={() => onLongPress(null, currentMessage)}
+          style={{
+            alignSelf: isUserMessage ? "flex-end" : "flex-start",
+            backgroundColor: isUserMessage ? "#0084ff" : "#f0f0f0",
+            borderRadius: 10,
+            maxWidth: "80%",
+            marginHorizontal: 15,
+            marginBottom: 10,
+            paddingHorizontal: 15,
+            paddingVertical: 10,
+            position: "relative",
+          }}
+        >
+          <Text
+            style={{
+              color: isUserMessage ? "white" : "black",
+              fontSize: 16,
+            }}
+          >
+            {currentMessage.text}
+          </Text>
+          {currentMessage.reaction && (
+            <View
+              style={{
+                top: -12,
+                position: "absolute",
+                left: isUserMessage ? -16 : 50,
+                padding: 5,
+                backgroundColor: "white",
+                borderRadius: 10,
+              }}
+            >
+              <Text style={{ color: isUserMessage ? "white" : "black" }}>
+                {currentMessage.reaction}
+              </Text>
+            </View>
+          )}
+        </TouchableOpacity>
+        <Text
+          style={{
+            marginTop: 10,
+            marginHorizontal: 20,
+            fontSize: 10,
+            color: "black",
+            textAlign: isUserMessage ? "right" : "left",
+            left: 10,
+          }}
+        >
+          {messageTime}
+        </Text>
+      </>
+    );
+  };
   const renderActions = useCallback(() => {
     return (
       <TouchableOpacity style={{ alignSelf: 'center', marginLeft: 10 }}>
@@ -172,16 +235,25 @@ const ChatScreen = ({ route }: any) => {
     setCustomModalVisible(false);
   };
 
-  const handleEmojiPress = (emoji: string) => {
+  const handleEmojiPress = async (emoji: string) => {
     if (messageIdToDelete) {
-      setReactions((prevReactions) => ({
-        ...prevReactions,
-        [messageIdToDelete]: emoji,
-      }));
+      setMessages((prevMessages) => {
+        const updatedMessages = prevMessages.map((msg) => {
+          if (msg._id === messageIdToDelete) {
+            return {
+              ...msg,
+              reaction: msg.reaction === emoji ? null : emoji,
+            };
+          }
+          return msg;
+        });
+        console.log("ooooooooo", updatedMessages);
+        AsyncStorage.setItem(`messages_${chatId}`,JSON.stringify(updatedMessages));
+        return updatedMessages;
+      });
     }
     closeReactionModal();
   };
-
   const renderSend = (props:any) => {
     // console.log('propsrenderSend', props)
     return (
@@ -223,7 +295,7 @@ const ChatScreen = ({ route }: any) => {
 
             <View style={styles.userInfo}>
               <View style={[styles.profileImg, { backgroundColor: color }]}>
-                <Text style={styles.profileText}>{profileImg}</Text>
+                <Text style={styles.profileText}>{avatar}</Text>
               </View>
               <View style={styles.userDetails}>
                 <Text style={styles.userName}>{name}</Text>
@@ -266,6 +338,7 @@ const ChatScreen = ({ route }: any) => {
           renderActions={renderActions}
           renderSend={renderSend}
           onLongPress={onLongPress}
+          renderMessage={renderMessage}
         />
       </View>
       <RBSheet

@@ -77,7 +77,7 @@ const SearchScreen = () => {
                             <View style={styles.box1}>
                                 <View style={{backgroundColor:item.color,borderRadius:50,}}>
                               <View style={styles.profileBg}>
-                                   <Text style={styles.text1}>{item.profileImg}</Text>
+                                   <Text style={styles.text1}>{item.avatar}</Text>
                                    </View>
                                    </View>
                                 <Text style={styles.text}>{item.name}</Text>

@@ -53,7 +53,7 @@ const MenuScreen = ({ navigation }:any) => {
   };
 
   const handleNavigation = useCallback((item)=>{
-    console.log(item);
+    console.log('pppp',item);
     navigation.navigate('Chat', {data : item})
   },[])
 
