@@ -11,6 +11,7 @@ import {
   FlatList,
 } from 'react-native';
 import styles from './styles';
+import {fonts} from '../../assets/fonts/index'
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { SafeAreaView } from 'react-native';
 import { Icons } from '../../assets/icons';

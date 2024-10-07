@@ -10,7 +10,7 @@ import {
   import styles from './styles';
   const width = Dimensions.get('screen').width;
   
-  const Contact = ({onPress, item}) => {
+  const Contact = ({onPress, item}:any) => {
     console.log('Contact',item);
     return (
       <TouchableOpacity style={styles.FlatListContainer} onPress={onPress}>

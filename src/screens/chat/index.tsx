@@ -115,7 +115,7 @@ const ChatScreen = ({ route }: any) => {
     const userExists = chatUsers.find((u:any) => u.id === user.id);
  
     if (!userExists) {
-      chatUsers.push({ id: user.id, name: user.name, avatar: user.profileImg ,color:user.color});
+      chatUsers.push({ id: user.id, name: user.name, avatar: user.avatar ,color:user.color});
       await AsyncStorage.setItem('chatUsers', JSON.stringify(chatUsers));
 
     }
@@ -247,7 +247,7 @@ const ChatScreen = ({ route }: any) => {
           }
           return msg;
         });
-        console.log("ooooooooo", updatedMessages);
+        // console.log("ooooooooo", updatedMessages);
         AsyncStorage.setItem(`messages_${chatId}`,JSON.stringify(updatedMessages));
         return updatedMessages;
       });

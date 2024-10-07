@@ -1,6 +1,7 @@
 import {StyleSheet} from 'react-native';
 // import family from '../../assets/fonts/index';
 import { colors } from '../../theme/colors';
+import { fonts } from '../../assets/fonts';
 
 const styles = StyleSheet.create({
   safeareaview: {
@@ -29,6 +30,7 @@ const styles = StyleSheet.create({
   },
   text1: {
     fontSize: 18,
+    fontFamily:fonts.italic,
     marginBottom: 3,
     color: '#FFFFFF',
     fontWeight: '600',
