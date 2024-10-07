@@ -21,6 +21,7 @@ const SearchScreen = () => {
             const filtered = contactsData.filter(contact => contact.name.includes(query)
             );
             setFilteredContacts(filtered);
+            console.log(filteredContacts);
         } else {
             setFilteredContacts([]);
         }
@@ -33,7 +34,7 @@ const SearchScreen = () => {
   };
 
   const handleNavigation = useCallback((item)=>{
-    
+    console.log(item);
     navigation.navigate('Chat', {data : item})
   },[])
     
@@ -67,7 +68,7 @@ const SearchScreen = () => {
                     <View style={styles.listContainer}>
                         
                     <FlatList
-                        data={filteredContacts}
+                    data={filteredContacts}
                        keyExtractor={(item) => item.id.toString()}
 
                         renderItem={({ item }) => (

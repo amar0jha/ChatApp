@@ -18,7 +18,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import ReactionModal from '../../components/reaction';
 import CustomModal from '../../components/delete';
 
-const ChatScreen = ({ route }) => {
+const ChatScreen = ({ route }: any) => {
+  // console.log(route.params);
   const navigation = useNavigation();
 
   // const user=route.params.name;
@@ -34,8 +35,7 @@ const ChatScreen = ({ route }) => {
   const { color, profileImg, name, id } = route?.params?.data;
   // console.log('sss',route.params.data);
 
-  const chatId = route?.params?.data?.id;
-  // console.log('hhh',chatId);
+  const chatId = route.params.data.id;
 
   const [messages, setMessages] = useState([{}]);
   const refRBSheet = useRef();
@@ -89,27 +89,33 @@ const ChatScreen = ({ route }) => {
   // }, []);
 
   const onSend = async (newMessages: IMessage[] = []) => {
-
+    // console.log('message',newMessages);
     setMessages((previousMessages) => {
+      console.log('prec]viousMethod',previousMessages);
       const updatedMessages = GiftedChat.append(previousMessages, newMessages);
+      console.log(chatId);
       AsyncStorage.setItem(`messages_${chatId}`, JSON.stringify(updatedMessages));
+     
+      
       storeChatUser(user);
-      console.log(updatedMessages)
+      // console.log(updatedMessages)
       // console.log('dddd',user);
       return updatedMessages;
     });
   };
 
-  const storeChatUser = async (User) => {
+  const storeChatUser = async (User:any) => {
 
     const storedChatUsers = await AsyncStorage.getItem('chatUsers');
+
 
     const chatUsers = storedChatUsers ? JSON.parse(storedChatUsers) : [];
 
 
-    const userExists = chatUsers.find((u) => u._id === User._id);
+    const userExists = chatUsers.find((u:any) => u.id === user.id);
+ 
     if (!userExists) {
-      chatUsers.push({ _id: User.id, name: User.name, avatar: User.profileImg });
+      chatUsers.push({ id: user.id, name: user.name, avatar: user.profileImg ,color:user.color});
       await AsyncStorage.setItem('chatUsers', JSON.stringify(chatUsers));
 
     }
@@ -137,6 +143,7 @@ const ChatScreen = ({ route }) => {
     
     const storedMessages = await AsyncStorage.getItem(`messages_${chatId}`);
     const messagesArray = storedMessages ? JSON.parse(storedMessages) : [];
+    
 
     if (Array.isArray(messagesArray)) {
       const updatedMessagesArray = messagesArray.filter(
@@ -175,7 +182,7 @@ const ChatScreen = ({ route }) => {
     closeReactionModal();
   };
 
-  const renderSend = (props) => {
+  const renderSend = (props:any) => {
     // console.log('propsrenderSend', props)
     return (
       <TouchableOpacity
@@ -194,7 +201,7 @@ const ChatScreen = ({ route }) => {
               },
             },
           ])
-          messages => onSend(messages);
+          // messages => onSend(messages);
         }}>
         <Image source={Icons.sendIcon} style={styles.sendicon} />
       </TouchableOpacity>
@@ -236,6 +243,7 @@ const ChatScreen = ({ route }) => {
           messages={messages}
           onSend={messages => onSend(messages)}
           user={{ _id: 1 }}
+          alignTop={true}
           placeholder="Message..."
           textInputStyle={{
             backgroundColor: '#FFFFFF',
@@ -318,7 +326,7 @@ const ChatScreen = ({ route }) => {
         description="Are you sure you want to delete this message?"
         imageSource={Icons.deleteIcon}
         buttonText="Yes, Delete"
-        secondButtonText="Cancel"
+        secondButtonText="No, Cancel"
         closeModal={() => setCustomModalVisible(false)}
         onButtonPress={() => {
           if (messageIdToDelete) {

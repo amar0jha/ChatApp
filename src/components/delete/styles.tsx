@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         width: '100%', 
     },
     okButton: {
-        backgroundColor: colors.blue,
+        backgroundColor: '#2A7BBB',
         paddingHorizontal: 20,
         paddingVertical: 16,
         borderRadius: 5,
@@ -45,6 +45,19 @@ const styles = StyleSheet.create({
     },
     okButtonText: {
         color: 'white',
+        fontSize: 14,
+        textAlign: 'center',
+    },
+    okButton1: {
+        backgroundColor: colors.midGrey,
+        paddingHorizontal: 20,
+        paddingVertical: 16,
+        borderRadius: 5,
+        flex: 1, 
+        marginHorizontal: 5, 
+    },
+    okButtonText1: {
+        color: colors.black,
         fontSize: 14,
         textAlign: 'center',
     },

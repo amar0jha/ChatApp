@@ -52,5 +52,6 @@ const Icons = {
   partyEmoji: require('/Users/user/Desktop/ChatApplication/ChatApp/src/assets/icons/partyemoji.png'),
   smileEmoji: require('/Users/user/Desktop/ChatApplication/ChatApp/src/assets/icons/smileemoji.png'),
   likeEmoji: require('/Users/user/Desktop/ChatApplication/ChatApp/src/assets/icons/likeemoji.png'),
+  bellIcon:require('/Users/user/Desktop/ChatApplication/ChatApp/src/assets/icons/bell.png'),
 };
 export { Icons };

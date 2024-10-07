@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
-import family from '../../assets/fonts/index';
+// import family from '../../assets/fonts/index';
+import { colors } from '../../theme/colors';
 
 const styles = StyleSheet.create({
   safeareaview: {
@@ -31,12 +32,11 @@ const styles = StyleSheet.create({
     marginBottom: 3,
     color: '#FFFFFF',
     fontWeight: '600',
-    fontFamily: family.Bold,
 
     shadowOpacity: 0.5,
     shadowOffset: {
       width: 0,
-      height: 2,
+      height: 1,
     },
     shadowRadius: 2,
   },
@@ -44,7 +44,6 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: '#FFFFFF',
     fontWeight: '400',
-    fontFamily: family.thin,
 
     shadowOpacity: 0.5,
     shadowOffset: {
@@ -57,7 +56,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#3E88C2',
     borderRadius: 10,
     padding: 10,
-    shadowOpacity: 1.5,
+    shadowOpacity: 0.2,
     shadowOffset: {
       width: 0,
       height: 2,
@@ -88,7 +87,7 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     paddingHorizontal: 15,
 
-    shadowOpacity: 0.5,
+    shadowOpacity: 0.2,
     shadowOffset: {
       width: 0,
       height: 2,
@@ -190,11 +189,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   addchat: {
+    tintColor:'#2A7BBB',
     position: 'absolute',
-    height: 100,
-    width: 90,
-    right: 0,
-    bottom: 0,
+    height: 30,
+    width: 30,
+    right: 15,
+    bottom: 20,
   },
   // addchatcontainer:{
   //   position:'absolute',

@@ -54,8 +54,8 @@ const CustomModal = (props: CustomModalProps) => {
                     <Text style={styles.modalMessage}>{description}</Text>
                     <View style={styles.buttonContainer}>
                     {secondButtonText && (
-                            <TouchableOpacity onPress={handleSecondButtonPress} style={styles.okButton}>
-                                <Text style={styles.okButtonText}>{secondButtonText}</Text>
+                            <TouchableOpacity onPress={handleSecondButtonPress} style={styles.okButton1}>
+                                <Text style={styles.okButtonText1}>{secondButtonText}</Text>
                             </TouchableOpacity>
                         )}
                         <TouchableOpacity onPress={handleButtonPress} style={styles.okButton}>
