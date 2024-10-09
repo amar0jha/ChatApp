@@ -6,5 +6,6 @@ const colors ={
      red:'red',
      blue:'blue',
      overlayColor:'rgba(0,0,0,0.5)',
+     darkBlue:'#2A7BBB',
 }
 export {colors};

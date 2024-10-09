@@ -7,19 +7,18 @@ container: {
     flex: 1,
     backgroundColor: colors.skyblue,
   },
-  backBox: {
+  backContainer: {
     backgroundColor: "#FFFFFF",
     width: "15%",
     marginRight:10,
    
     borderRadius: 10
   },
-  backButton: {
-  
-  },
+ 
   backIcon: {
     width: 23,
     height: 15,
+    justifyContent:'center',
     alignSelf: 'center',
     marginTop:20,
   },
@@ -49,14 +48,13 @@ container: {
     justifyContent:'space-around'
   },
   profileBg:{
-    // backgroundColor:colors.midGrey,
     width:40,
     height:40,
     borderRadius:50,
     justifyContent:'center',
     alignItems:'center',
   },
-  text1:{
+  avtImg:{
     fontWeight:'bold',
     alignSelf:'center',
     textAlign:'center',
@@ -65,7 +63,7 @@ container: {
     justifyContent:'center',
     alignItems:'center',
       },
-  text:{
+      nameText:{
     fontWeight:'bold',
     alignSelf:'center',
     textAlign:'center',
@@ -82,7 +80,7 @@ container: {
         borderColor: 'lightgrey',
         marginHorizontal: 18,
       },
-      box: {
+      containerNf: {
         alignItems: "center",
         justifyContent: "center",
         transform: [{ translateY: 230 }],
@@ -95,7 +93,7 @@ container: {
         borderRadius: 20,
     
       },
-      box1:{
+      containerItem:{
         flexDirection:'row',
         gap:10,
         marginHorizontal:16,

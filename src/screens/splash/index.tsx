@@ -3,6 +3,8 @@ import { ImageBackground, View } from "react-native";
 import { NavigationProp } from '@react-navigation/native';
 import styles from "./styles";
 import { Images } from "../../assets/images";
+import { CommonActions } from '@react-navigation/native';
+
 
 interface SplashProps {
   navigation: NavigationProp<any>;
@@ -10,9 +12,12 @@ interface SplashProps {
 
 const SplashScreen = ({ navigation }:SplashProps) => {
   
-  const handleNav = () => {
-    navigation.navigate('BottomTab');
-  };
+  const handleNav = () => {navigation.dispatch(CommonActions.reset({index: 0,
+    routes: [{ name: 'BottomTab' }],
+    // navigation.navigate('BottomTab');
+  })
+);
+};
 
   useEffect(() => {
     const timer = setTimeout(() => {

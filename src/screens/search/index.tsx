@@ -1,49 +1,31 @@
 import { View, Text, SafeAreaView, TouchableOpacity, Image, TextInput, FlatList } from 'react-native';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import styles from './styles';
 import { Icons } from '../../assets/icons';
 import { Images } from '../../assets/images';
 import { useNavigation } from '@react-navigation/native';
-import contactsData from '../../data.json' 
-import { ScreenNames } from '../../navigator/screenname';
+import contactsData from '../../data.json';
 
 const SearchScreen = () => {
     const navigation = useNavigation();
-    const [searchQuery, setSearchQuery] = useState('');
-    const [filteredContacts, setFilteredContacts] = useState([]);
-    const [hasSearched, setHasSearched] = useState(false);
-     console.log(searchQuery);
+    const [searchTerm, setSearchTerm] = useState('');
 
-    const handleSearch = (query) => {
-        setSearchQuery(query);
-        setHasSearched(true);
-        if (query) {
-            const filtered = contactsData.filter(contact => contact.name.includes(query)
-            );
-            setFilteredContacts(filtered);
-            console.log(filteredContacts);
-        } else {
-            setFilteredContacts([]);
-        }
-    };
+    const filteredContactsList = useMemo(() => {
+        if (!searchTerm) return [];
+        return contactsData.filter(contact => contact.name.toLowerCase().includes(searchTerm.toLowerCase()));
+    }, [searchTerm]);
 
-    const clearSearch = () => {
-      setSearchQuery('');
-      setFilteredContacts([]);
-      setHasSearched(false);
-  };
+    const resetSearch = () => setSearchTerm('');
 
-  const handleNavigation = useCallback((item)=>{
-    console.log(item);
-    navigation.navigate('Chat', {data : item})
-  },[])
-    
+    const navigateToChatScreen = useCallback((contact) => {
+        navigation.navigate('Chat', { data: contact });
+    }, [navigation]);
 
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.search}>
-                <View style={styles.backBox}>
-                    <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+                <View style={styles.backContainer}>
+                    <TouchableOpacity  onPress={() => navigation.goBack()}>
                         <Image source={Icons.backArrowIcon} style={styles.backIcon} />
                     </TouchableOpacity>
                 </View>
@@ -51,50 +33,43 @@ const SearchScreen = () => {
                 <View style={styles.searchBox}>
                     <TextInput
                         placeholder="Search Here..."
-                        value={searchQuery}
-                        onChangeText={handleSearch}
+                        value={searchTerm}
+                        onChangeText={setSearchTerm}
                     />
-                       <TouchableOpacity onPress={clearSearch}>
+                    <TouchableOpacity onPress={resetSearch}>
                         <Image source={Icons.crossIcon} style={styles.crossBtn} />
                     </TouchableOpacity>
-
                 </View>
             </View>
 
-            {hasSearched ? (
-                filteredContacts.length > 0 ? (
-                   
-                    
+            {searchTerm && (
+                filteredContactsList.length > 0 ? (
                     <View style={styles.listContainer}>
-                        
-                    <FlatList
-                    data={filteredContacts}
-                       keyExtractor={(item) => item.id.toString()}
-
-                        renderItem={({ item }) => (
-                            <TouchableOpacity onPress={()=>handleNavigation(item)}>
-                                
-                            <View style={styles.box1}>
-                                <View style={{backgroundColor:item.color,borderRadius:50,}}>
-                              <View style={styles.profileBg}>
-                                   <Text style={styles.text1}>{item.avatar}</Text>
-                                   </View>
-                                   </View>
-                                <Text style={styles.text}>{item.name}</Text>
-                            </View>
-                            <View style={styles.lineView}></View>
-                            </TouchableOpacity>
-                          
-                        )}
-                    />
+                        <FlatList
+                            data={filteredContactsList}
+                            keyExtractor={(item) => item.id.toString()}
+                            renderItem={({ item }) => (
+                                <TouchableOpacity onPress={() => navigateToChatScreen(item)}>
+                                    <View style={styles.containerItem}>
+                                        <View style={{ backgroundColor: item.color, borderRadius: 50 }}>
+                                            <View style={styles.profileBg}>
+                                                <Text style={styles.avtImg}>{item.avatar}</Text>
+                                            </View>
+                                        </View>
+                                        <Text style={styles.nameText}>{item.name}</Text>
+                                    </View>
+                                    <View style={styles.lineView}></View>
+                                </TouchableOpacity>
+                            )}
+                        />
                     </View>
                 ) : (
-                    <View style={styles.box}>
+                    <View style={styles.containerNf}>
                         <Image source={Images.noResultFound} style={styles.image} />
-                        <Text style={styles.text}>No Results Found</Text>
+                        <Text style={styles.nameText}>No Results Found</Text>
                     </View>
                 )
-            ) : null}
+            )}
         </SafeAreaView>
     );
 };

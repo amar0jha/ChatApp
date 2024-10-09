@@ -19,7 +19,7 @@ interface CustomModalProps {
     onSecondButtonPress?: () => void;  
 }
 
-const CustomModal = (props: CustomModalProps) => {
+const DeleteModal = (props: CustomModalProps) => {
     const { visible, title, description, imageSource, buttonText, closeModal, onButtonPress, secondButtonText, onSecondButtonPress } = props;
 
     const handleButtonPress = () => {
@@ -70,4 +70,4 @@ const CustomModal = (props: CustomModalProps) => {
 };
 
 
-export default CustomModal;
+export default DeleteModal;

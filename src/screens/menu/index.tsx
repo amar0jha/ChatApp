@@ -1,149 +1,130 @@
+import React, { useCallback, useEffect, useState } from 'react';
 import {
-  Dimensions,
   Image,
   Pressable,
-  StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
-  ScrollView,
   FlatList,
+  SafeAreaView,
 } from 'react-native';
-import styles from './styles';
-import {fonts} from '../../assets/fonts/index'
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { SafeAreaView } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Icons } from '../../assets/icons';
 import { Images } from '../../assets/images';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import Contact from '../../components/contact';
-import { colors } from '../../theme/colors';
 import ChatBottomSheet from '../../components/chatbottomsheet';
+import styles from './styles';
+import ListItem from '../../components/contact';
 
-const MenuScreen = ({ navigation }:any) => {
-  const [storedchats, setstoredchats] = useState([]);
-  const [searchfilter, setsearchfilter] = useState('');
-  const [filtersearch, setfiltersearch] = useState([]);
-  const [hasSearch, setHasSearched] = useState(false);
+const MenuScreen = ({ navigation }: any) => {
+  const [chatUsers, setChatUsers] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
   const [isBottomSheetVisible, setBottomSheetVisible] = useState(false);
 
-  const loadChatUsers = async () => {
-    const storedchat = await AsyncStorage.getItem('chatUsers');
-    console.log(storedchat);
-    if (storedchat) {
-      const chat = storedchat ? JSON.parse(storedchat) : [];
-      setstoredchats(chat);
-    } else {
-      setstoredchats([]);
-    }
-  };
-
   useEffect(() => {
+    const loadChatUsers = async () => {
+      const storedChat = await AsyncStorage.getItem('chatUsers');
+      setChatUsers(storedChat ? JSON.parse(storedChat) : []);
+    };
     loadChatUsers();
-  }, []);
+  }, [chatUsers]); 
 
-  const functionfilter = query => {
-    setHasSearched(query.length > 0);
-    setsearchfilter(query);
-    const filterme = storedchats.filter(contact => 
-      contact.name.includes(query)
-    );
-    setfiltersearch(query ? filterme : []);
-    console.log(filtersearch);
-  };
+  const filteredUsers = searchQuery
+    ? chatUsers.filter(user => user.name.toLowerCase().includes(searchQuery.toLowerCase()))
+    : chatUsers;
 
-  const handleNavigation = useCallback((item)=>{
-    console.log('pppp',item);
-    navigation.navigate('Chat', {data : item})
-  },[])
+  const navigateToChat = useCallback((user) => {
+    navigation.navigate('Chat', { data: user });
+  }, [navigation]);
 
-  const handleNewChat = () => {
+  const initiateNewChat = () => {
     navigation.navigate('Search');
-    setBottomSheetVisible(false); 
+    setBottomSheetVisible(false);
   };
+
+  const renderEmptyState = () => (
+    <View style={styles.containerBtnImg}>
+      <Image source={Images.noChat} style={styles.nochat} />
+      <Pressable
+        style={({ pressed }) => [
+          { backgroundColor: pressed ? '#2A7BBB' : '#2A7BBB' },
+          styles.pressable,
+        ]}
+        onPress={() => setBottomSheetVisible(true)}
+      >
+        <Text style={styles.textBtn}>Start Chat</Text>
+      </Pressable>
+    </View>
+  );
+
+  const renderNoResults = () => (
+    <View style={styles.Noresult}>
+      <Image source={Images.noResultFound} style={styles.noresultimage} />
+      <Text>No results found</Text>
+    </View>
+  );
 
   return (
     <>
       <SafeAreaView style={styles.safeareaview}>
-        <View style={styles.container1}>
-          <View style={styles.container2}>
-            <View style={styles.container4}>
-              <Text style={styles.text1}>Messages</Text>
-              <Text style={styles.text2}>45 Contacts</Text>
+        <View style={styles.containerMain}>
+          <View style={styles.containerSecond}>
+            <View style={styles.containerText}>
+              <Text style={styles.textMessage}>Messages</Text>
+              <Text style={styles.textContact}>{chatUsers.length} Contacts</Text>
             </View>
           </View>
-          <View style={styles.container5}>
+          <View style={styles.notify}>
             <Image source={Icons.bellIcon} style={styles.bell} />
           </View>
         </View>
       </SafeAreaView>
 
-      <View style={styles.container6}>
-        <View style={styles.container7}>
+      <View style={styles.MainBody}>
+        <View style={styles.searchContainer1}>
           <Image source={Icons.search} style={styles.search} />
           <TextInput
-            value={searchfilter}
-            onChangeText={text => functionfilter(text)}
-            style={styles.inputcontainer}
+            value={searchQuery}
+            onChangeText={setSearchQuery}
+            style={styles.inputcontainer1}
             placeholder="Search messages..."
           />
+          {searchQuery.length > 0 && (
+            <Pressable
+              onPress={() => setSearchQuery('')}
+              style={styles.clearButton}
+            >
+              <Image source={Icons.crossIcon} style={styles.crossIcon} />
+            </Pressable>
+          )}
         </View>
 
-        {storedchats?.length > 0 ? (
-          hasSearch ? (
-            filtersearch.length > 0 ? (
-              <View style={styles.FlatListMainContainer}>
-                <FlatList
-                  data={filtersearch}
-                  bounces={false}
-                  renderItem={({ item }) => (
-                    <Contact item={item} onPress={() => handleNavigation(item)} />
-                  )}
-                />
-              </View>
-            ) : (
-              <View style={styles.Noresult}>
-                <Image source={Images.noChat} style={styles.noresultimage} />
-              </View>
-            )
-          ) : (
-            <View style={styles.FlatListMainContainer}>
-              <FlatList
-                data={storedchats}
-                renderItem={({ item }) => (
-                  <Contact item={item} onPress={() => handleNavigation(item)} />
-                )}
-              />
-            </View>
-          )
+        {chatUsers.length === 0 ? (
+          renderEmptyState()
+        ) : filteredUsers.length > 0 ? (
+          <FlatList
+            data={filteredUsers}
+            bounces={false}
+            renderItem={({ item }) => (
+              <ListItem item={item} onPress={() => navigateToChat(item)} />
+            )}
+            style={styles.FlatListMainContainer}
+          />
         ) : (
-          <View style={styles.container8}>
-            <View>
-              <Image source={Images.noChat} style={styles.nochat} />
-              <Pressable
-                style={({ pressed }) => [
-                  { backgroundColor: pressed ? '#2A7BBB' : '#2A7BBB' },
-                  styles.pressable,
-                ]}
-                onPress={() => setBottomSheetVisible(true)}>
-                <Text style={styles.text3}>Start Chat</Text>
-              </Pressable>
-            </View>
-          </View>
+          renderNoResults() 
         )}
       </View>
 
-      {storedchats?.length > 0 && (
-        <TouchableOpacity onPress={() => setBottomSheetVisible(true)}>
-          <Image source={Icons.plusIcon} style={styles.addchat} />
+      {chatUsers.length > 0 && (
+        <TouchableOpacity onPress={() => setBottomSheetVisible(true)} style={styles.addchat}>
+          <Image source={Icons.plusIcon} style={styles.addSize} />
         </TouchableOpacity>
       )}
 
       <ChatBottomSheet
         visible={isBottomSheetVisible}
         onClose={() => setBottomSheetVisible(false)}
-        onPressNewChatOption={handleNewChat}
+        onPressNewChatOption={initiateNewChat}
         navigation={navigation}
       />
     </>

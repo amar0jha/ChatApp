@@ -8,11 +8,11 @@ import styles from './styles';
 interface SecureAccountModalProps {
     visible: boolean;
     closeModal: () => void;
-    onEmojiPress: (emoji: string) => void;
-    onDeletePress?: () => void; 
+    onClickEmoji: (emoji: string) => void;
+    onClickDelete?: () => void; 
 }
 
-const ReactionModal = ({ visible, closeModal,onEmojiPress,onDeletePress }: SecureAccountModalProps) => {
+const EmojiModal = ({ visible, closeModal,onClickEmoji,onClickDelete }: SecureAccountModalProps) => {
     return (
         <Modal
             animationType="slide"
@@ -24,44 +24,58 @@ const ReactionModal = ({ visible, closeModal,onEmojiPress,onDeletePress }: Secur
                 <TouchableOpacity style={styles.modalContainer} activeOpacity={1}>
                     <View style={styles.modalView}>
                     <View style={styles.emoji}>
-                            <TouchableOpacity onPress={() => onEmojiPress('👍')}>
+                            <TouchableOpacity onPress={() => onClickEmoji('👍')}>
                                 <Image source={Icons.thumbsUpEmoji} style={styles.emojiIcon} />
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={() => onEmojiPress('❤️')}>
+                            <TouchableOpacity onPress={() => onClickEmoji('❤️')}>
                                 <Image source={Icons.likeEmoji} style={styles.emojiIcon} />
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={() => onEmojiPress('😂')}>
+                            <TouchableOpacity onPress={() => onClickEmoji('😂')}>
                                 <Image source={Icons.smileEmoji} style={styles.emojiIcon} />
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={() => onEmojiPress('🎉')}>
+                            <TouchableOpacity onPress={() => onClickEmoji('🎉')}>
                                 <Image source={Icons.partyEmoji} style={styles.emojiIcon} />
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={() => onEmojiPress('👎')}>
+                            <TouchableOpacity onPress={() => onClickEmoji('👎')}>
                                 <Image source={Icons.thumbsDownEmoji} style={styles.emojiIcon} />
                             </TouchableOpacity>
                         </View>
                         <TouchableOpacity>
                             <View style={styles.optionContainer}>
-                                <Image source={Icons.eyeIcon} style={styles.optionIcon} />
-                                <Text style={styles.modalOptionText}>View details</Text>
+                                <Image source={Icons.shareIcon} style={styles.optionIcon} />
+                                <Text style={styles.modalOptionText}>Reply</Text>
                             </View>
                         </TouchableOpacity>
 
                         <TouchableOpacity>
                             <View style={styles.optionContainer}>
-                                <Image source={Icons.unPinIcon} style={styles.optionIcon} />
-                                <Text style={styles.modalOptionText}>Unpin Chat</Text>
+                                <Image source={Icons.forwardIcon} style={styles.optionIcon} />
+                                <Text style={styles.modalOptionText}>Forward</Text>
                             </View>
                         </TouchableOpacity>
 
                         <TouchableOpacity>
                             <View style={styles.optionContainer}>
-                                <Image source={Icons.search} style={styles.optionIcon} />
-                                <Text style={styles.modalOptionText}>Search Chat</Text>
+                                <Image source={Icons.copyIcon} style={styles.optionIcon} />
+                                <Text style={styles.modalOptionText}>Copy</Text>
                             </View>
                         </TouchableOpacity>
 
-                        <TouchableOpacity onPress={onDeletePress}>
+                        <TouchableOpacity>
+                            <View style={styles.optionContainer}>
+                                <Image source={Icons.starIcon} style={styles.optionIcon} />
+                                <Text style={styles.modalOptionText}>Star</Text>
+                            </View>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity>
+                            <View style={styles.optionContainer}>
+                                <Image source={Icons.reportIcon} style={styles.optionIcon} />
+                                <Text style={styles.modalOptionText}>Report</Text>
+                            </View>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity onPress={onClickDelete}>
                             <View style={styles.optionContainer}>
                                 <Image source={Icons.deleteIcon} style={styles.optionIcon} />
                                 <Text style={styles.modalOptionText1}>Delete</Text>
@@ -75,4 +89,4 @@ const ReactionModal = ({ visible, closeModal,onEmojiPress,onDeletePress }: Secur
 };
 
 
-export default ReactionModal;
+export default EmojiModal;

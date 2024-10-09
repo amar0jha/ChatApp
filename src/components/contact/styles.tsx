@@ -6,47 +6,45 @@ import {
     FlatList,
     Dimensions,
   } from 'react-native';
+import { colors } from "../../theme/colors";
 const width = Dimensions.get('screen').width;
 
 const styles = StyleSheet.create({
     FlatListContainer: {
       flexDirection: 'row',
-      paddingVertical: 15,
+      paddingVertical: 16,
       borderBottomWidth: 1,
       borderBlockColor: 'lightgrey',
       alignItems: 'center',
       justifyContent: 'flex-start',
     },
     profileImg: {
-      borderRadius: 100,
-      padding: 15,
+      borderRadius: 50,
+      padding: 16,
     },
-    container2: {
+    containerMid: {
       flexDirection: 'row',
       justifyContent: 'flex-start',
-      width: width > 400 ? '80%' : '95%',
+      width: '85%',
     },
     textGap:{
         marginHorizontal:20,
     },
   
-    text1: {
-      color: '#FFFFFF',
+    profilePic: {
+      color: colors.white,
       fontWeight: 'bold',
       fontSize: 16,
-    //   fontFamily: family.Bold,
     },
-    text2: {
+    textName: {
       marginBottom: 10,
       fontSize: 16,
       fontWeight: '500',
-    //   fontFamily: family.Bold,
     },
-    text3: {
+    textMsg: {
       fontSize: 13,
       fontWeight: '400',
       color: '#85929C',
-    //   fontFamily: 'family.thin',
     },
     cross: {
       marginHorizontal: 20,

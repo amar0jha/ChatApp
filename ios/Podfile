@@ -22,6 +22,7 @@ target 'ChatApp' do
     # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
+  pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
 
   target 'ChatAppTests' do
     inherit! :complete

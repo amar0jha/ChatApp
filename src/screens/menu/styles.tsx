@@ -1,38 +1,33 @@
 import {StyleSheet} from 'react-native';
-// import family from '../../assets/fonts/index';
 import { colors } from '../../theme/colors';
 import { fonts } from '../../assets/fonts';
 
 const styles = StyleSheet.create({
   safeareaview: {
-    backgroundColor: '#2A7BBB',
+    backgroundColor: colors.darkBlue,
   },
-  container1: {
+  containerMain: {
     paddingHorizontal: 15,
     paddingVertical: 15,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  container2: {
+  containerSecond: {
     flexDirection: 'row',
   },
-  container3: {
-    backgroundColor: '#3E88C2',
-    borderRadius: 10,
-    padding: 10,
-  },
+  
   backarrow: {
     height: 20,
     width: 20,
   },
-  container4: {
+  containerText: {
     marginLeft: 10,
   },
-  text1: {
+  textMessage: {
     fontSize: 18,
     fontFamily:fonts.italic,
     marginBottom: 3,
-    color: '#FFFFFF',
+    color: colors.white,
     fontWeight: '600',
 
     shadowOpacity: 0.5,
@@ -42,11 +37,10 @@ const styles = StyleSheet.create({
     },
     shadowRadius: 2,
   },
-  text2: {
+  textContact: {
     fontSize: 13,
-    color: '#FFFFFF',
+    color: colors.white,
     fontWeight: '400',
-
     shadowOpacity: 0.5,
     shadowOffset: {
       width: 0,
@@ -54,7 +48,7 @@ const styles = StyleSheet.create({
     },
     shadowRadius: 2,
   },
-  container5: {
+  notify: {
     backgroundColor: '#3E88C2',
     borderRadius: 10,
     padding: 10,
@@ -72,21 +66,23 @@ const styles = StyleSheet.create({
   search: {
     height: 20,
     width: 20,
+    // marginTop:20,
     marginRight: 10,
   },
-  container6: {
+  MainBody: {
     flex: 1,
     backgroundColor: '#E7EDF3',
   },
-  container7: {
+  searchContainer: {
     flexWrap: 'wrap',
 
     flexDirection: 'row',
     marginHorizontal: 16,
-    marginVertical: 19,
-    backgroundColor: '#FFFFFF',
+    marginVertical: 18,
+    backgroundColor: colors.white,
     borderRadius: 10,
     paddingVertical: 15,
+    // paddingVertical: 10,
     paddingHorizontal: 15,
 
     shadowOpacity: 0.2,
@@ -112,71 +108,25 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     borderRadius: 10,
   },
-  text3: {
-    color: '#FFFFFF',
+  textBtn: {
+    color: colors.white,
     fontSize: 16,
   },
 
-  RBContainer: {
-    paddingHorizontal: 24,
-    borderRadius: 30,
-    paddingTop: 20,
-    flex: 1,
-  },
-  RBContainer2: {
-    marginTop: 20,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  RBtext: {
-    marginLeft: 10,
-    fontSize: 18,
-    fontWeight: '300',
-  },
+
   plus: {
     height: 25,
     width: 25,
   },
   FlatListMainContainer: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.white,
     marginHorizontal: 20,
-    marginTop: 16,
+    marginVertical: 16,
+    marginBottom:20,
     paddingHorizontal: 20,
     borderRadius: 10,
   },
 
-  FlatListContainer: {
-    flexDirection: 'row',
-    paddingVertical: 15,
-    borderBottomWidth: 1,
-    borderBlockColor: 'lightgrey',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-  },
-  profileImg: {
-    borderRadius: 100,
-    padding: 15,
-  },
-  flattext1: {
-    color: '#FFFFFF',
-    fontWeight: 'bold',
-    fontSize: 16,
-  },
-  flattext2: {
-    marginBottom: 10,
-    fontSize: 16,
-    fontWeight: '500',
-  },
-  flattext3: {
-    fontSize: 13,
-    fontWeight: '400',
-    color: '#85929C',
-  },
-  cross: {
-    marginHorizontal: 20,
-    height: 18,
-    width: 18,
-  },
   Noresult: {
     flex: 1,
     justifyContent: 'center',
@@ -186,26 +136,62 @@ const styles = StyleSheet.create({
     height: 200,
     width: 180,
   },
-  flatcontainer2: {
-    marginLeft: 10,
-    justifyContent: 'space-between',
-  },
-  addchat: {
-    tintColor:'#2A7BBB',
-    position: 'absolute',
-    height: 30,
-    width: 30,
-    right: 15,
-    bottom: 20,
-  },
-  // addchatcontainer:{
-  //   position:'absolute',
-  //   le
-  //   padding:0,
-  //   backgroundColor:'red'
-  // },
+  
+  
+  containerBtnImg:{
+    flex: 1, 
+    justifyContent: 'center',
+     alignItems: 'center'
+    },
 
-  container8:{flex: 1, justifyContent: 'center', alignItems: 'center'}
+    addchat: {
+      position: 'absolute',
+      height: 50, 
+      width: 50,  
+      borderRadius: 25, 
+      backgroundColor: '#B0BEC5', 
+      justifyContent: 'center',
+      alignItems: 'center',
+      right: 15,
+      bottom: 20,
+      elevation: 5, 
+    },
+
+    addSize:{ 
+      height: 25,
+       width: 25, 
+       tintColor: colors.white ,
+      },
+
+      searchContainer1: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginHorizontal: 15,
+        marginVertical: 18,
+        backgroundColor: colors.white,
+        borderRadius: 10,
+        paddingVertical: 16,
+        paddingHorizontal: 15,
+       
+      },
+      
+      inputcontainer1: {
+        flex: 1,
+        marginRight: 10, 
+      },
+      
+      clearButton: {
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      
+      crossIcon: {
+        height: 20, 
+        width: 20,
+        tintColor: '#A9A9A9', 
+      },
+      
+      
 });
 
 export default styles;
