@@ -354,7 +354,7 @@ const ChatScreen = ({ route }: any) => {
           }
           closeDeleteModal();
         }}
-        onSecondButtonPress={closeDeleteModal}
+        onCancelButtonPress={closeDeleteModal}
       />
     </>
   );

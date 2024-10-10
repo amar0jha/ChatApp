@@ -16,11 +16,11 @@ interface CustomModalProps {
     secondButtonText?: string;  
     closeModal?: () => void;
     onButtonPress?: () => void;
-    onSecondButtonPress?: () => void;  
+    onCancelButtonPress?: () => void;  
 }
 
 const DeleteModal = (props: CustomModalProps) => {
-    const { visible, title, description, imageSource, buttonText, closeModal, onButtonPress, secondButtonText, onSecondButtonPress } = props;
+    const { visible, title, description, imageSource, buttonText, closeModal, onButtonPress, secondButtonText, onCancelButtonPress } = props;
 
     const handleButtonPress = () => {
         if (onButtonPress) {
@@ -32,8 +32,8 @@ const DeleteModal = (props: CustomModalProps) => {
     };
 
     const handleSecondButtonPress = () => {
-        if (onSecondButtonPress) {
-            onSecondButtonPress();
+        if (onCancelButtonPress) {
+            onCancelButtonPress();
         }
         if (closeModal) {
             closeModal();
