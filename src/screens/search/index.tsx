@@ -5,6 +5,7 @@ import { Icons } from '../../assets/icons';
 import { Images } from '../../assets/images';
 import { useNavigation } from '@react-navigation/native';
 import contactsData from '../../data.json';
+import { strings } from '../../theme/string';
 
 const SearchScreen = () => {
     const navigation = useNavigation();
@@ -66,7 +67,7 @@ const SearchScreen = () => {
                 ) : (
                     <View style={styles.containerNf}>
                         <Image source={Images.noResultFound} style={styles.image} />
-                        <Text style={styles.nameText}>No Results Found</Text>
+                        <Text style={styles.nameText}>{strings.noResultFound}</Text>
                     </View>
                 )
             )}

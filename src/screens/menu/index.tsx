@@ -15,6 +15,7 @@ import { Images } from '../../assets/images';
 import ChatBottomSheet from '../../components/chatbottomsheet';
 import styles from './styles';
 import ListItem from '../../components/contact';
+import { strings } from '../../theme/string';
 
 const MenuScreen = ({ navigation }: any) => {
   const [chatUsers, setChatUsers] = useState([]);
@@ -52,7 +53,7 @@ const MenuScreen = ({ navigation }: any) => {
         ]}
         onPress={() => setBottomSheetVisible(true)}
       >
-        <Text style={styles.textBtn}>Start Chat</Text>
+        <Text style={styles.textBtn}>{strings.startChat}</Text>
       </Pressable>
     </View>
   );
@@ -60,7 +61,7 @@ const MenuScreen = ({ navigation }: any) => {
   const renderNoResults = () => (
     <View style={styles.Noresult}>
       <Image source={Images.noResultFound} style={styles.noresultimage} />
-      <Text>No results found</Text>
+      <Text style={styles.nameText}>{strings.noResultFound}</Text>
     </View>
   );
 
@@ -70,8 +71,8 @@ const MenuScreen = ({ navigation }: any) => {
         <View style={styles.containerMain}>
           <View style={styles.containerSecond}>
             <View style={styles.containerText}>
-              <Text style={styles.textMessage}>Messages</Text>
-              <Text style={styles.textContact}>{chatUsers.length} Contacts</Text>
+              <Text style={styles.textMessage}>{strings.messages}</Text>
+              <Text style={styles.textContact}>{chatUsers.length} {strings.contacts}</Text>
             </View>
           </View>
           <View style={styles.notify}>

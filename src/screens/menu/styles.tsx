@@ -136,6 +136,14 @@ const styles = StyleSheet.create({
     height: 200,
     width: 180,
   },
+  nameText:{
+    fontWeight:'bold',
+    alignSelf:'center',
+    textAlign:'center',
+    padding:8,
+    justifyContent:'center',
+    alignItems:'center',
+      },
   
   
   containerBtnImg:{

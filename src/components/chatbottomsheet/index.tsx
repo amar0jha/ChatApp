@@ -10,6 +10,7 @@ import {
 import RBSheet from 'react-native-raw-bottom-sheet';
 import { Icons } from '../../assets/icons';
 import styles from './styles';
+import { strings } from '../../theme/string';
 
 interface ChatBottomSheetProps {
   visible: boolean;
@@ -36,10 +37,7 @@ const ChatBottomSheet: React.FC<ChatBottomSheetProps> = ({
     }
   }, [visible]);
 
-  // const handleNavigation = (screen: string) => {
-  //   navigation.navigate(screen); 
-  //   onClose(); 
-  // };
+
 
   return (
     <RBSheet
@@ -65,7 +63,7 @@ const ChatBottomSheet: React.FC<ChatBottomSheetProps> = ({
               <View style={styles.containerTop1}>
                 <Image source={Icons.newChatIcon} style={styles.imgSize} />
                 <View style={styles.containerTop2}>
-                  <Text style={styles.textName}>New Chat</Text>
+                  <Text style={styles.textName}>{strings.newChat}</Text>
                 </View>
               </View>
             </TouchableOpacity>
@@ -76,7 +74,7 @@ const ChatBottomSheet: React.FC<ChatBottomSheetProps> = ({
               <View style={styles.containerTop1}>
                 <Image source={Icons.newGroupChatIcon} style={styles.imgSize} />
                 <View style={styles.containerTop2}>
-                  <Text style={styles.textName}>New Group Chat</Text>
+                  <Text style={styles.textName}>{strings.newGroupChat}</Text>
                 </View>
               </View>
             </TouchableOpacity>
@@ -87,7 +85,7 @@ const ChatBottomSheet: React.FC<ChatBottomSheetProps> = ({
               <View style={styles.containerTop1}>
                 <Image source={Icons.announcementIcon} style={styles.imgSize} />
                 <View style={styles.containerTop2}>
-                  <Text style={styles.textName}>New Announcement</Text>
+                  <Text style={styles.textName}>{strings.newAnnouncement}</Text>
                 </View>
               </View>
             </TouchableOpacity>

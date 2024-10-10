@@ -4,6 +4,7 @@ import { Icons } from '../../assets/icons';
 import { Images } from '../../assets/images';
 import { colors } from '../../theme/colors';
 import styles from './styles';
+import { strings } from '../../theme/string';
 
 interface SecureAccountModalProps {
     visible: boolean;
@@ -43,42 +44,42 @@ const EmojiModal = ({ visible, closeModal,onClickEmoji,onClickDelete }: SecureAc
                         <TouchableOpacity>
                             <View style={styles.optionContainer}>
                                 <Image source={Icons.shareIcon} style={styles.optionIcon} />
-                                <Text style={styles.modalOptionText}>Reply</Text>
+                                <Text style={styles.modalOptionText}>{strings.reply}</Text>
                             </View>
                         </TouchableOpacity>
 
                         <TouchableOpacity>
                             <View style={styles.optionContainer}>
                                 <Image source={Icons.forwardIcon} style={styles.optionIcon} />
-                                <Text style={styles.modalOptionText}>Forward</Text>
+                                <Text style={styles.modalOptionText}>{strings.forward}</Text>
                             </View>
                         </TouchableOpacity>
 
                         <TouchableOpacity>
                             <View style={styles.optionContainer}>
                                 <Image source={Icons.copyIcon} style={styles.optionIcon} />
-                                <Text style={styles.modalOptionText}>Copy</Text>
+                                <Text style={styles.modalOptionText}>{strings.copy}</Text>
                             </View>
                         </TouchableOpacity>
 
                         <TouchableOpacity>
                             <View style={styles.optionContainer}>
                                 <Image source={Icons.starIcon} style={styles.optionIcon} />
-                                <Text style={styles.modalOptionText}>Star</Text>
+                                <Text style={styles.modalOptionText}>{strings.star}</Text>
                             </View>
                         </TouchableOpacity>
 
                         <TouchableOpacity>
                             <View style={styles.optionContainer}>
                                 <Image source={Icons.reportIcon} style={styles.optionIcon} />
-                                <Text style={styles.modalOptionText}>Report</Text>
+                                <Text style={styles.modalOptionText}>{strings.report}</Text>
                             </View>
                         </TouchableOpacity>
 
                         <TouchableOpacity onPress={onClickDelete}>
                             <View style={styles.optionContainer}>
                                 <Image source={Icons.deleteIcon} style={styles.optionIcon} />
-                                <Text style={styles.modalOptionText1}>Delete</Text>
+                                <Text style={styles.modalOptionText1}>{strings.delete}</Text>
                             </View>
                         </TouchableOpacity>
                     </View>

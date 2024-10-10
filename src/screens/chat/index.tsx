@@ -18,6 +18,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import EmojiModal from '../../components/reaction';
 import DeleteModal from '../../components/delete';
 import BottomSheetOption from '../../components/customsheet';
+import { strings } from '../../theme/string';
 
 const ChatScreen = ({ route }: any) => {
   const navigation = useNavigation();
@@ -246,7 +247,7 @@ const ChatScreen = ({ route }: any) => {
               </View>
               <View style={styles.userDetails}>
                 <Text style={styles.userName}>{name}</Text>
-                <Text style={styles.userStatus}>Clocked in</Text>
+                <Text style={styles.userStatus}>{strings.cockedIn}</Text>
               </View>
             </View>
           </View>

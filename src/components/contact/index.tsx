@@ -1,13 +1,11 @@
 import {
-    StyleSheet,
     Text,
     TouchableOpacity,
     View,
-    FlatList,
-    Dimensions,
   } from 'react-native';
   import React from 'react';
   import styles from './styles';
+import { strings } from '../../theme/string';
   
   const ListItem = ({onPress, item}:any) => {
     return (
@@ -18,7 +16,7 @@ import {
           </View>
           <View style={styles.textGap}>
             <Text style={styles.textName}>{item.name}</Text>
-            <Text style={styles.textMsg}>You: Hello, {item.name}</Text>
+            <Text style={styles.textMsg}>{strings.youHello}, {item.name}</Text>
           </View>
         </View>
       </TouchableOpacity>
